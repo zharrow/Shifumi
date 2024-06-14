@@ -1,51 +1,12 @@
+PlayerChoice,ComputerChoice,Result
 Rock,Paper,Computer wins this round!
-Paper,Paper,It's a tie!
 Paper,Paper,It's a tie!
 Paper,Scissors,Computer wins this round!
-Paper,Scissors,Computer wins this round!
-Rock,Scissors,Player wins this round!
-Rock,Scissors,Player wins this round!
-Rock,Scissors,Player wins this round!
-Rock,Paper,Computer wins this round!
-Rock,Paper,Computer wins this round!
-Rock,Paper,Computer wins this round!
-Rock,Paper,Computer wins this round!
-Rock,Paper,Computer wins this round!
-Rock,Paper,Computer wins this round!
-Rock,Paper,Computer wins this round!
-Rock,Paper,Computer wins this round!
-Rock,Paper,Computer wins this round!
-Paper,Paper,It's a tie!
-Paper,Paper,It's a tie!
-Paper,Paper,It's a tie!
-Paper,Paper,It's a tie!
-Paper,Paper,It's a tie!
-Paper,Paper,It's a tie!
-Paper,Paper,It's a tie!
-Scissors,Paper,Player wins this round!
-Scissors,Paper,Player wins this round!
-Scissors,Paper,Player wins this round!
-Paper,Paper,It's a tie!
-Scissors,Paper,Player wins this round!
-Rock,Paper,Computer wins this round!
-Scissors,Paper,Player wins this round!
-Scissors,Paper,Player wins this round!
-Scissors,Paper,Player wins this round!
-Scissors,Paper,Player wins this round!
-Scissors,Paper,Player wins this round!
-Rock,Paper,Computer wins this round!
-Rock,Paper,Computer wins this round!
-Rock,Paper,Computer wins this round!
-Scissors,Paper,Player wins this round!
-Scissors,Paper,Player wins this round!
-Scissors,Paper,Player wins this round!
-Paper,Paper,It's a tie!
-Paper,Paper,It's a tie!
-Paper,Paper,It's a tie!
-Paper,Paper,It's a tie!
-Paper,Paper,It's a tie!
-Paper,Scissors,Computer wins this round!
-Paper,Scissors,Computer wins this round!
-Rock,Scissors,Player wins this round!
+Scissors,Scissors,It's a tie!
 Rock,Scissors,Player wins this round!
 Paper,Scissors,Computer wins this round!
+Rock,Scissors,Player wins this round!
+Paper,Paper,It's a tie!
+Rock,Scissors,Player wins this round!
+Paper,Paper,It's a tie!
+Rock,Scissors,Player wins this round!
