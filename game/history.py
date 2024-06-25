@@ -1,7 +1,7 @@
 import pandas as pd
 
 class History:
-    def __init__(self, file_path='history.csv'):
+    def __init__(self, file_path='data/history.csv'):
         self.file_path = file_path
         self.columns = ['PlayerChoice', 'ComputerChoice', 'Result']
         try:

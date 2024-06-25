@@ -1,7 +1,7 @@
 import pandas as pd
 from game.human import HumanPlayer
 from game.computer import Computer
-from history import History
+from game.history import History
 
 class Game:
     def __init__(self, name):
@@ -19,14 +19,19 @@ class Game:
             3: 2
         }
 
+        result = []
         if self.player.choice == self.computer.choice:
-            return "It's a tie!"
+            result = [0, "It's a tie!"]
         elif rules[self.player.choice] == self.computer.choice:
             self.computer.lose_life()
-            return "Player wins this round!"
+            result = [1, "Player wins this round!"]
         else:
             self.player.lose_life()
-            return "Computer wins this round!"
+            result = [2, "Computer wins this round!"]
+
+        self.history.save_round(self.player.choice, self.computer.choice, result[0])
+        
+        return result[1]
 
     def startConsole(self):
         self.history.load_history()
