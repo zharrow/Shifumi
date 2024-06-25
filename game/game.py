@@ -1,19 +1,22 @@
 import pandas as pd
-from game.human import HumanPlayer
+from game.human import Human
 from game.computer import Computer
 from history import History
 
 class Game:
-    def __init__(self):
-        self.player = HumanPlayer("Human")
+    def __init__(self, name):
+        if (name == "" or name == None):
+            name = "Human"
+
+        self.player = Human(name)
         self.computer = Computer("Computer")
         self.history = History()
 
     def determine_winner(self):
         rules = {
-            "Rock": "Scissors",
-            "Paper": "Rock",
-            "Scissors": "Paper"
+            1: 3,
+            2: 1,
+            3: 2
         }
 
         if self.player.choice == self.computer.choice:
@@ -25,7 +28,7 @@ class Game:
             self.player.lose_life()
             return "Computer wins this round!"
 
-    def start(self):
+    def startConsole(self):
         self.history.load_history()
         while self.player.lives > 0 and self.computer.lives > 0:
             player_result = self.player.do_choice()
