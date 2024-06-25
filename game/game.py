@@ -1,17 +1,20 @@
 import csv
 import numpy as np
-from game.player import HumanPlayer, Computer
+from game.player import Human, Computer
 
 class Game:
-    def __init__(self):
-        self.player = HumanPlayer("Human")
+    def __init__(self, name):
+        if (name == "" or name == None):
+            name = "Human"
+
+        self.player = Human(name)
         self.computer = Computer("Computer")
 
     def determine_winner(self):
         rules = {
-            "Rock": "Scissors",
-            "Paper": "Rock",
-            "Scissors": "Paper"
+            1: 3,
+            2: 1,
+            3: 2
         }
 
         if self.player.choice == self.computer.choice:
@@ -23,7 +26,7 @@ class Game:
             self.player.lose_life()
             return "Computer wins this round!"
 
-    def start(self):
+    def startConsole(self):
         while self.player.lives > 0 and self.computer.lives > 0:
             player_result = self.player.do_choice()
             if player_result == "Thanks for playing!":

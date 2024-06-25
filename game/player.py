@@ -14,8 +14,11 @@ class Player:
     def lose_life(self):
         self.lives -= 1
 
-class HumanPlayer(Player):
-    def do_choice(self):
+class Human(Player):
+    def do_choice_interface(self, user_input):
+        self.choice = user_input
+
+    def do_choice_console(self):
         user_input = int(input(f"{self.name}, enter your choice: Rock(1) Paper(2) Scissors(3). Press (9) to quit: "))
         while user_input not in [1, 2, 3, 9]:
             user_input = int(input("Invalid choice.. Enter Rock(1) Paper(2) Scissors(3). Press (9) to quit: "))
@@ -23,8 +26,7 @@ class HumanPlayer(Player):
         if user_input == 9:
             return "Thanks for playing!"
 
-        choices_map = {1: "Rock", 2: "Paper", 3: "Scissors"}
-        self.choice = choices_map.get(user_input, None)
+        self.choice = user_input
 
 class Computer(Player):
     def __init__(self, name):
@@ -34,8 +36,7 @@ class Computer(Player):
         # dfImport = pd.read_csv('history.csv')
 
     def do_choice(self):
-        choices = ["Rock", "Paper", "Scissors"]
+        choices = [1, 2, 3]
         choice = np.random.choice(choices)
-        print(f"{self.name} chose: {choice}")
 
         self.choice = choice
