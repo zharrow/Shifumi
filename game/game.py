@@ -1,5 +1,5 @@
 import pandas as pd
-from game.human import Human
+from game.human import HumanPlayer
 from game.computer import Computer
 from history import History
 
@@ -8,7 +8,7 @@ class Game:
         if (name == "" or name == None):
             name = "Human"
 
-        self.player = Human(name)
+        self.player = HumanPlayer(name)
         self.computer = Computer("Computer")
         self.history = History()
 

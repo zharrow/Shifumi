@@ -38,9 +38,7 @@ class Frame(tk.Frame):
             master.start_game(restart=True)
 
         def winner(winner):
-            master.label.configure(text=f"{winner} wins the game!")
-            master.label.configure(width=25)
-
+            master.round_result.configure(text=f"Round result: {winner} wins the game!")
             master.restart_button = Button(master, restart_game, "Restart the game")
             master.restart_button.grid(row=6, column=0, padx=20, pady=20)
             master.leave_button.grid(row=6, column=1, padx=20, pady=20)
@@ -113,9 +111,6 @@ class Tk(tk.Tk):
         self.start_button.destroy()
         self.label.destroy()
         self.entry.destroy()
-
-        self.label = Label(self, t="Rock, Paper, Scissors!", textSize=15, width=20)
-        self.label.grid(row=1, column=0, columnspan=3, padx=5, pady=5)
 
         self.menu = Frame(self)
         self.menu.grid(row=2, column=0, columnspan=3, padx=10, pady=10)
