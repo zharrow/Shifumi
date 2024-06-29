@@ -1,13 +1,7 @@
 import tkinter as tk
 import os
 from game.game import Game
-
-class Canvas(tk.Canvas):
-    def __init__(self, master, w=None, h=None):
-        tk.Canvas.__init__(self, master)
-        self.configure(width=w, height=h)
-        self.configure(bg= 'yellow')
-        self.create_text(w/2, h/2, text= 'Ceci est un canvas:\nUne zone de dession ou \n une zone de jeu.', font= ('Calibri', 30, 'bold'), fill= 'orange')
+import pandas as pd
 
 class Button(tk.Button):
     def __init__(self, master, fn, text, id=None):
@@ -33,15 +27,31 @@ class Frame(tk.Frame):
         tk.Frame.__init__(self, master, width=100, height=100)
         self.configure(bg= 'pink')
 
+        def mainMenu():
+            self.destroy()
+            master.player_lives.destroy()
+            master.computer_lives.destroy()
+            master.player_choice.destroy()
+            master.computer_choice.destroy()
+            master.round_result.destroy()
+            master.leave_button.destroy()
+            master.restart_button.destroy()
+            master.mainMenu_button.destroy()
+            master.mainMenu()
+
         def restart_game():
+            master.mainMenu_button.destroy()
             master.restart_button.destroy()
             master.start_game(restart=True)
 
         def winner(winner):
+            master.game.history.save_history()
             master.round_result.configure(text=f"Round result: {winner} wins the game!")
             master.restart_button = Button(master, restart_game, "Restart the game")
-            master.restart_button.grid(row=6, column=0, padx=20, pady=20)
-            master.leave_button.grid(row=6, column=1, padx=20, pady=20)
+            master.mainMenu_button = Button(master, mainMenu, "Main menu")
+            master.mainMenu_button.grid(row=6, column=0, padx=20, pady=20)
+            master.restart_button.grid(row=7, column=0, padx=20, pady=20)
+            master.leave_button.grid(row=7, column=1, padx=20, pady=20)
 
             self.destroy()
 
@@ -55,7 +65,7 @@ class Frame(tk.Frame):
             master.game.player.do_choice_interface(i)
             master.player_choice.configure(text=f"{master.game.player.name} choice: {rules[master.game.player.choice]}")
 
-            master.game.computer.do_choice()
+            master.game.computer.predict_choice(master.game.history.current_game, master.game.history.data)
             master.computer_choice.configure(text=f"Computer choice: {rules[master.game.computer.choice]}")
 
             roundResult = master.game.determine_winner()
@@ -87,6 +97,9 @@ class Tk(tk.Tk):
         self.configure(bg= 'light blue')
         #self.state('zoomed')
         self.geometry('1000x800+400+0')
+        self.mainMenu()
+
+    def mainMenu(self):
         self.title = Label(self, t= "Shifumi Game")
         self.title.grid(row=0, column=0, columnspan=3, padx=20, pady=20)
 
@@ -99,8 +112,15 @@ class Tk(tk.Tk):
         self.start_button = Button(self, self.start_game, "Start the game")
         self.start_button.grid(row=2, column=0, columnspan=2, padx=20, pady=20)
 
+        self.stat_button = Button(self, self.stat, "Statistics")
+        self.stat_button.grid(row=3, column=0, columnspan=2, padx=20, pady=20)
+
         self.leave_button = Button(self, self.stop_game, "Leave the game")
-        self.leave_button.grid(row=3, column=0, columnspan=3, padx=20, pady=20)
+        self.leave_button.grid(row=4, column=0, columnspan=3, padx=20, pady=20)
+
+    def stat(self):
+        self.game = Game()
+        self.game.statistics()
 
     def start_game(self, restart=False):
         if restart == False:
@@ -111,6 +131,7 @@ class Tk(tk.Tk):
         self.start_button.destroy()
         self.label.destroy()
         self.entry.destroy()
+        self.stat_button.destroy()
 
         self.menu = Frame(self)
         self.menu.grid(row=2, column=0, columnspan=3, padx=10, pady=10)

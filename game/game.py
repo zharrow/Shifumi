@@ -27,7 +27,7 @@ class Game:
             result = [1, "Player wins this round!"]
         else:
             self.player.lose_life()
-            result = [2, "Computer wins this round!"]
+            result = [-1, "Computer wins this round!"]
 
         self.history.save_round(self.player.choice, self.computer.choice, result[0])
         
