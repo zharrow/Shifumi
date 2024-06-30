@@ -4,11 +4,8 @@ from game.computer import Computer
 from game.history import History
 
 class Game:
-    def __init__(self, name):
-        if (name == "" or name == None):
-            name = "Human"
-
-        self.player = HumanPlayer(name)
+    def __init__(self):
+        self.player = HumanPlayer("Human")
         self.computer = Computer("Computer")
         self.history = History()
 
