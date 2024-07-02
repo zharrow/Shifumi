@@ -44,11 +44,11 @@ class GameFrame(tk.Frame):
         self.create_widgets()
 
     def create_widgets(self):
-        self.menu_frame = tk.Frame(self, width=100, height=100, bg='pink')
+        self.menu_frame = tk.Frame(self, width=90, height=100, bg='pink')
         self.menu_frame.grid(row=2, column=0, columnspan=4, padx=10, pady=10)
         self.button_list = [CustomButton(self.menu_frame, self.choice, text, i+1) for i, text in enumerate(['Rock', 'Paper', 'Scissors'])]
         for k, button in enumerate(self.button_list):
-            button.grid(row=0, column=k, padx=20, pady=20)
+            button.grid(row=0, column=k, padx=10, pady=10)
 
         self.player_lives = CustomLabel(self, text=f"Human lives: {self.game.player.lives}", textSize=15, width=25)
         self.player_lives.grid(row=3, column=0, columnspan=2, padx=10, pady=10)
@@ -73,8 +73,10 @@ class GameFrame(tk.Frame):
         self.round_result.config(text=f"Round result: {roundResult}")
         self.update_lives()
         if self.game.player.lives <= 0:
+            self.game.history.save_history()
             self.switch_frame("result", "Computer")
         elif self.game.computer.lives <= 0:
+            self.game.history.save_history()
             self.switch_frame("result", "Human")
 
     def update_lives(self):
@@ -151,7 +153,7 @@ class MainApp(tk.Tk):
     def __init__(self):
         super().__init__()
         self.configure(bg='light blue')
-        self.geometry('1000x800+400+0')
+        self.geometry('925x477+400+0')
         self.frames = {}
         self.show_frame("main_menu")
 
